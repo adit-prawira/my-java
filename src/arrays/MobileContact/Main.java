@@ -37,14 +37,83 @@ public class Main {
             }
         }
     }
+
     private static void searchContact() {
 
     }
 
     private static void removeContact() {
+        System.out.println("Enter existing contact name: ");
+        String name = scanner.nextLine();
+        Contact existingContact = mobilePhone.queryContact(name);
+        if(mobilePhone.removeExistingContact(existingContact)){
+            System.out.println("Successfully deleting contact");
+        }else{
+            System.out.println("Error occurred during deletion.");
+        }
     }
 
     private static void modifyContact() {
+        System.out.println("Enter existing contact name: ");
+        String name = scanner.nextLine();
+        Contact existingContact = mobilePhone.queryContact(name);
+        boolean quitInputPage = false;
+        int option = 0;
+        if(existingContact == null){
+            System.out.println("Contact not found.");
+            return;
+        }
+        while(!quitInputPage){
+            switch(option){
+                case 0:
+                    showOptions();
+                    break;
+                case 1:
+                    System.out.println("Enter new contact name: ");
+                    String newContactName = scanner.nextLine();
+                    Contact updatedContactName = Contact.createContact(newContactName, existingContact.getPhoneNumber());
+                    if(mobilePhone.updateExistingContact(existingContact, updatedContactName)){
+                        System.out.println("SuccessFully update contact name");
+                    }else{
+                        System.out.println("Error updating name");
+                    }
+                    break;
+                case 2:
+                    System.out.println("Enter new phone number: ");
+                    String newPhoneNumber = scanner.nextLine();
+                    Contact updatedContactNumber = Contact.createContact(existingContact.getName(), newPhoneNumber);
+                    if(mobilePhone.updateExistingContact(existingContact, updatedContactNumber)){
+                        System.out.println("SuccessFully update contact number");
+                    }else{
+                        System.out.println("Error updating contact number");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Enter new contact name: ");
+                    String newName = scanner.nextLine();
+                    System.out.println("Enter new phone number: ");
+                    String newNumber = scanner.nextLine();
+                    Contact newContact = Contact.createContact(newName, newNumber);
+                    if(mobilePhone.updateExistingContact(existingContact, newContact)){
+                        System.out.println("SuccessFully update contact");
+                    }else{
+                        System.out.println("Error updating contact");
+                    }
+                    break;
+                case 4:
+                    quitInputPage = true;
+                    break;
+            }
+        }
+    }
+
+    private static void showOptions() {
+        System.out.println("Options:\n");
+        System.out.println("0 - To show options.");
+        System.out.println("1 - To update contact name only.");
+        System.out.println("2 - To update phone number only.");
+        System.out.println("3 - To update both name and phone number.");
+        System.out.println("4 - To cancel and quit edit.");
     }
 
     private static void addContact() {
@@ -53,7 +122,11 @@ public class Main {
         System.out.println("Enter phone number: ");
         String newPhoneNumber = scanner.nextLine();
         Contact newContact = Contact.createContact(newContactName, newPhoneNumber);
-        mobilePhone.addNewContact(newContact);
+        if(mobilePhone.addNewContact(newContact)){
+            System.out.println("New contact added: " + newContactName + " - "+ newPhoneNumber);
+        }else{
+            System.out.println("Can't add contact under "+ newContactName);
+        }
     }
     private static void startPhone(){System.out.println("Starting mobile phone...");}
     private static void printCommands() {

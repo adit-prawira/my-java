@@ -13,7 +13,7 @@ public class MobilePhone {
 
     public boolean addNewContact(Contact contact){
         if(findContact(contact.getName()) >= 0){
-            System.out.println("Contact has already been saved on memory");
+            System.out.println("Contact with the same name has already been saved on memory");
             return false;
         }
         myContacts.add(contact);
@@ -26,7 +26,9 @@ public class MobilePhone {
             return false;
         }
         myContacts.set(position, newContact);
-        System.out.println("Replaced: "+oldContact.getName()+" ---> " + newContact.getName());
+        System.out.println("Replacing...\n");
+        System.out.println(oldContact.getName()+" ---> " + newContact.getName());
+        System.out.print(oldContact.getPhoneNumber()+" ---> " + newContact.getPhoneNumber());
         return true;
     }
 
@@ -41,6 +43,13 @@ public class MobilePhone {
         return true;
     }
 
+    public Contact queryContact(String name){
+        int position = findContact(name);
+        if(position >=0){
+            return this.myContacts.get(position);
+        }
+        return null;
+    }
     public String queryExistingContact(Contact contact){
         return (findExistingContact(contact) >= 0) ? contact.getName() : null;
     }
