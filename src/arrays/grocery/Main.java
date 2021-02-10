@@ -10,7 +10,7 @@ public class Main {
         int choice = 0;
         printInstructions();
         while(!quit){
-            System.out.println("Enter you choice: \n");
+            System.out.println("Enter you choice: ");
             choice = scanner.nextInt();
             scanner.nextLine();
             switch(choice){
@@ -45,24 +45,23 @@ public class Main {
         groceryList.addGroceryItem(newItem);
     }
     private static void modifyItem() {
-        System.out.println("Enter item number: ");
-        int itemNum = scanner.nextInt();
-        scanner.nextLine();
+        System.out.println("Enter the item name: ");
+        String currentItem = scanner.nextLine();
+        System.out.println("Enter new item: ");
         String newItem = scanner.nextLine();
-        // Deduct itemNum by 1 to match ArrayList index numbering
-        groceryList.modifyGroceryItem(itemNum-1, newItem);
+        groceryList.modifyGroceryItem(currentItem, newItem);
 
     }
     private static void removeItem() {
-        System.out.println("Please enter item number to remove: ");
-        int itemNum = scanner.nextInt();
-        groceryList.removeGroceryItem(itemNum - 1);
+        System.out.println("Please enter item to remove: ");
+        String itemName = scanner.nextLine();
+        groceryList.removeGroceryItem(itemName);
     }
 
     private static void searchItem() {
         System.out.println("Search for: ");
         String searchedItem = scanner.nextLine();
-        if(groceryList.findItem(searchedItem) != null){
+        if(groceryList.onFile(searchedItem)){
             System.out.println("Found " + (searchedItem) + " in grocery list.");
         }else{
             System.out.println(searchedItem + " is not found in grocery list.");
