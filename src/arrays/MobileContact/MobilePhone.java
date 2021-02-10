@@ -50,9 +50,6 @@ public class MobilePhone {
         }
         return null;
     }
-    public String queryExistingContact(Contact contact){
-        return (findExistingContact(contact) >= 0) ? contact.getName() : null;
-    }
 
     public void printContactList(){
         int size = myContacts.size();
