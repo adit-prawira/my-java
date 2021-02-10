@@ -1,4 +1,4 @@
-package arrays.grocery;
+package arrays.Grocery;
 
 import java.util.ArrayList;
 

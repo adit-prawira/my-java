@@ -1,6 +1,5 @@
-package arrays.grocery;
+package arrays.Grocery;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainGrocery {
