@@ -1,5 +1,6 @@
 package arrays.grocery;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -32,12 +33,18 @@ public class Main {
                 case 5:
                     searchItem();
                     break;
-                case 6:
+                case 7:
                     quit = true;
                     break;
             }
         }
     }
+
+//    public static void processArrayList() {
+//        ArrayList<String> newArray = new ArrayList<String>(groceryList.getGroceryList());
+//        String[] copyArray = new String[groceryList.getGroceryList().size()];
+//        copyArray = groceryList.getGroceryList().toArray(copyArray);
+//    }
 
     private static void addItem() {
         System.out.println("Please enter the grocery item: ");
