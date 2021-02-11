@@ -43,7 +43,24 @@ public class Bank {
         if(branch!=null){
             System.out.println("Customer details for branch" + branch.getName());
             ArrayList<Customer> branchCustomers = branch.getCostumers();
+            for(int i = 0; i < branchCustomers.size(); i++){
+                Customer customer = branchCustomers.get(i);
+                System.out.println("Customer " + "["+(i+1)+"]: "
+                        +customer.getName());
+                if(showTransactions){
+                    System.out.println("Show transaction history:");
+                    ArrayList<Double> customerTransactions = customer.getTransactions();
+                    for(int j = 0; j < customerTransactions.size(); j++){
+                        System.out.println("Transaction" + "["+(j+1)+"]: "
+                                +customerTransactions.get(j));
+                    }
+                }else{
+                    System.out.println("Transaction history has been hidden.");
+                }
+            }
+            return true;
         }
+        return false;
     }
     private Branch findBranch(String branchName) {
         for(int i = 0; i< this.branches.size();i++){
