@@ -51,7 +51,7 @@ public class Bank {
                     System.out.println("Show transaction history:");
                     ArrayList<Double> customerTransactions = customer.getTransactions();
                     for(int j = 0; j < customerTransactions.size(); j++){
-                        System.out.println("Transaction" + "["+(j+1)+"]: "
+                        System.out.println("["+(j+1)+"] Amount: "
                                 +customerTransactions.get(j));
                     }
                 }else{
