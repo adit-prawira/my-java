@@ -1,15 +1,20 @@
 package arrays.Playlist;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
 public class MainPlaylist {
+    private static ArrayList<Album> albums = new ArrayList<Album>();
     public static void main(String[] args) {
         /*
         1. Creating program that implements a playlist of a song
         2. Create a Song class that has title and duraiton attributes
         3. The program will have ALbum class which will contain list of song
-        4. Song form different Albums can be added to the playlist and will appear
+        4. Song from different Albums can be added to the playlist and will appear
            in the list in order they are added
         5. When the songs have been added to the playlist, create a menu options
-                a. auit
+                a. quit
                 b. skip to next song
                 c. skip to previous song
                 d. replay the current song
@@ -17,5 +22,42 @@ public class MainPlaylist {
          6. A song must exist in an album before it can be added to the playlist
          */
 
+        Album album = new Album("Within the Mist", "Azure Gaze");
+        album.addSong("within the mist", 2.13);
+        album.addSong("sanpo", 2.18);
+        album.addSong("by your side", 2.08);
+        albums.add(album);
+
+        album = new Album("Hana-Bi", "Huey Daze");
+        album.addSong("Sai", 2.18);
+        album.addSong("Hikaru", 2.07);
+        album.addSong("Yotsuba", 2.35);
+        album.addSong("Sweet Nothings", 2.23);
+        album.addSong("Stay Close", 2.26);
+        album.addSong("Salo's Message", 2.15);
+        album.addSong("Hibaru", 2.09);
+        albums.add(album);
+
+        LinkedList<Song> playlist = new LinkedList<Song>();
+        albums.get(0).addToPlaylistByTitle("within the mist", playlist);
+        albums.get(0).addToPlaylistByTitle("sanpo", playlist);
+        albums.get(0).addToPlaylistByTitle("Hey There", playlist); // Does not exist
+        albums.get(0).addToPlaylist(3, playlist);
+
+        albums.get(1).addToPlaylist(5, playlist);
+        albums.get(1).addToPlaylist(1, playlist);
+        albums.get(1).addToPlaylist(3, playlist);
+        
+        play(playlist);
+    }
+
+    private static void play(LinkedList<Song> playlist) {
+        ListIterator<Song> listIterator = playlist.listIterator();
+        if(playlist.size() == 0){
+            System.out.println("Sorry there are no songs to play in this playlist");
+            return;
+        }else{
+            System.out.println("Now playing " + listIterator.next().toString());
+        }
     }
 }
