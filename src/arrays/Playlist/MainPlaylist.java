@@ -18,6 +18,7 @@ public class MainPlaylist {
                 d. replay the current song
                 e. List of the songs in the playlist
          6. A song must exist in an album before it can be added to the playlist
+         7. Remove song from playlist
          */
 
         Album album = new Album("Within the Mist", "Azure Gaze");
@@ -120,6 +121,18 @@ public class MainPlaylist {
                     printList(playlist);
                     break;
                 case 5:
+                    if(playlist.size() > 0){
+                        // After removing the current song, then the system will
+                        // automartically play the next existing song in the entry
+                        listIterator.remove();
+                        if(listIterator.hasNext()){
+                            System.out.println("Playing " + listIterator.next().toString());
+                        }else if(listIterator.hasPrevious()){
+                            System.out.println("Playing " + listIterator.previous().toString());
+                        }
+                    }
+                    break;
+                case 6:
                     printMenu();
                     break;
                 default:
@@ -145,6 +158,7 @@ public class MainPlaylist {
         System.out.println("2 - Go to previous song");
         System.out.println("3 - Replay current song");
         System.out.println("4 - Show list of songs in playlist");
-        System.out.println("5 - Show menu options");
+        System.out.println("5 - Delete current song from playlist");
+        System.out.println("6 - Show menu options");
     }
 }
