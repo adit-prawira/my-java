@@ -1,8 +1,6 @@
 package arrays.Playlist;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.ListIterator;
+import java.util.*;
 
 public class MainPlaylist {
     private static ArrayList<Album> albums = new ArrayList<Album>();
@@ -52,12 +50,101 @@ public class MainPlaylist {
     }
 
     private static void play(LinkedList<Song> playlist) {
+        Scanner scanner = new Scanner(System.in);
+        boolean quit = false;
+        boolean goToNext = true;
         ListIterator<Song> listIterator = playlist.listIterator();
         if(playlist.size() == 0){
             System.out.println("Sorry there are no songs to play in this playlist");
             return;
         }else{
-            System.out.println("Now playing " + listIterator.next().toString());
+            printMenu();
+            System.out.println("Playing " + listIterator.next().toString());
         }
+
+        while(!quit){
+            int action = scanner.nextInt();
+            scanner.nextLine();
+            switch(action){
+                case 0:
+                    System.out.println("Quitting playlist");
+                    quit = true;
+                    break;
+                case 1: // Go to next song
+                    if(!goToNext){
+                        if(listIterator.hasNext()){
+                            listIterator.next();
+                        }
+                        goToNext = true;
+                    }
+                    if(listIterator.hasNext()){
+                        System.out.println("Playing " + listIterator.next().toString());
+                    }else{
+                        System.out.println("Reached the end of the playlist");
+                        goToNext = false;
+                    }
+                    break;
+                case 2: // Go to previous song
+                    if(goToNext){
+                        if(listIterator.hasPrevious()){
+                            listIterator.previous();
+                        }
+                        goToNext = false;
+                    }
+                    if(listIterator.hasPrevious()){
+                        System.out.println("Playing " + listIterator.previous().toString());
+                    }else{
+                        System.out.println("At the start of the playlist");
+                        goToNext = true;
+                    }
+                    break;
+                case 3: // replay current song
+                    if(goToNext){
+                        if(listIterator.hasPrevious()){
+                            System.out.println("Replaying " + listIterator.previous().toString());
+                            goToNext = false;
+                        }else{
+                            System.out.println("At the start of the playlist");
+                        }
+                    }else{
+                        if(listIterator.hasNext()){
+                            System.out.println("Replaying " + listIterator.next().toString());
+                            goToNext = true;
+                        }else{
+                            System.out.println("Reached the end of the playlist");
+                        }
+                    }
+
+                    break;
+                case 4:
+                    printList(playlist);
+                    break;
+                case 5:
+                    printMenu();
+                    break;
+                default:
+                    System.out.println("Error: Plese enter a valid command");
+                    break;
+            }
+        }
+    }
+
+    private static void printList(LinkedList<Song> linkedList) {
+        Iterator<Song> i= linkedList.iterator();
+
+        System.out.println("===================PLAYLIST===================");
+        while(i.hasNext()){
+            System.out.println(i.next().toString());
+        }
+        System.out.println("==============================================");
+    }
+
+    private static void printMenu() {
+        System.out.println("0 - To quit");
+        System.out.println("1 - Go to next song");
+        System.out.println("2 - Go to previous song");
+        System.out.println("3 - Replay current song");
+        System.out.println("4 - Show list of songs in playlist");
+        System.out.println("5 - Show menu options");
     }
 }
