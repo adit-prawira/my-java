@@ -48,13 +48,24 @@ public class Player implements ISaveable{
     @Override
     public List<String> write() {
         List<String> values = new ArrayList<String>();
-
+        values.add(0, this.name);
+        values.add(1, ""+this.hitPoints);
+        values.add(2, ""+this.strength);
+        values.add(3, this.weapon);
         return null;
     }
 
     @Override
     public void read(List<String> savedValues) {
+        if(savedValues != null && savedValues.size() > 0){
+            this.name = savedValues.get(0);
+            // Parse since hitPoints is integer
+            this.hitPoints = Integer.parseInt(savedValues.get(1));
+            // Parse since strength is integer
+            this.strength = Integer.parseInt(savedValues.get(2));
+            this.weapon =savedValues.get(3);
 
+        }
     }
 
     @Override
