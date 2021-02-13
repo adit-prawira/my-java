@@ -10,6 +10,7 @@ public class Player implements ISaveable{
     private int strength;
     private String weapon;
 
+
     public Player(String name, int hitPoints, int strength){
         this.name = name;
         this.hitPoints = hitPoints;
@@ -52,17 +53,20 @@ public class Player implements ISaveable{
         values.add(1, ""+this.hitPoints);
         values.add(2, ""+this.strength);
         values.add(3, this.weapon);
-        return null;
+        return values;
     }
 
     @Override
     public void read(List<String> savedValues) {
         if(savedValues != null && savedValues.size() > 0){
             this.name = savedValues.get(0);
+
             // Parse since hitPoints is integer
             this.hitPoints = Integer.parseInt(savedValues.get(1));
+
             // Parse since strength is integer
             this.strength = Integer.parseInt(savedValues.get(2));
+
             this.weapon =savedValues.get(3);
 
         }
