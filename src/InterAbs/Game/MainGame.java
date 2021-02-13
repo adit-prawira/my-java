@@ -1,10 +1,10 @@
-package InterAbs.StorageSaving;
+package InterAbs.Game;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MainStorage {
+public class MainGame {
     public static void main(String[] args){
         /*
         * 1. Create a simple interface (Saveable or ISaveable)
@@ -41,7 +41,7 @@ public class MainStorage {
 
         // In order to be able to access the Monster's class methods,
         // code execution must be done as shown below since werewolf is
-        // declared as a ISaveable.
+        // declared as a ISaveable interface.
         ISaveable werewolf = new Monster("Werewolf", 100, 99);
         System.out.println("\nMonster Data:\n");
         System.out.println("Name: " + ((Monster) werewolf).getName());
