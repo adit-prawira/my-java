@@ -19,19 +19,33 @@ public class MainStorage {
         *    parameter and "saves" the values e.g. calls the method defined int he interface
         */
         Player player = new Player("Jason", 500, 900);
+        System.out.println("\nPlayer Data:\n");
+        System.out.println("Name: " + player.getName());
+        System.out.println("Hit Points: " + player.getHitPoints());
+        System.out.println("Strength: " + player.getStrength());
+        System.out.println("Weapon: " + player.getWeapon());
         System.out.println(player.toString());
         saveObject(player);
 
         // Set new values save and load it
         player.setHitPoints(99999);
         player.setWeapon("Kitchen Knife");
+        System.out.println("\nPlayer Data:\n");
+        System.out.println("Name: " + player.getName());
+        System.out.println("Hit Points: " + player.getHitPoints());
+        System.out.println("Strength: " + player.getStrength());
+        System.out.println("Weapon: " + player.getWeapon());
+        System.out.println(player.toString());
         saveObject(player);
-//        loadObject(player);
         System.out.println(player);
 
         ISaveable werewolf = new Monster("Werewolf", 100, 99);
-        System.out.println(werewolf);
+        System.out.println("\nMonster Data:\n");
+        System.out.println("Name: " + ((Monster) werewolf).getName());
+        System.out.println("Hit Points: " + ((Monster) werewolf).getHitPoints());
+        System.out.println("Strength: " + ((Monster) werewolf).getStrength());
         saveObject(werewolf);
+        loadObject(player);
     }
     public static void loadObject(ISaveable objectToLoad){
         ArrayList<String> values = readValues();
