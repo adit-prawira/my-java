@@ -18,17 +18,20 @@ public class MainStorage {
         * 7. In main program, write a method that makes an object that implements the interface as a
         *    parameter and "saves" the values e.g. calls the method defined int he interface
         */
-        Player adit = new Player("adit", 500, 900);
-        System.out.println(adit.toString());
-        saveObject(adit);
+        Player player = new Player("Jason", 500, 900);
+        System.out.println(player.toString());
+        saveObject(player);
 
         // Set new values save and load it
-        adit.setHitPoints(99999);
-        adit.setWeapon("Kitchen Knife");
+        player.setHitPoints(99999);
+        player.setWeapon("Kitchen Knife");
+        saveObject(player);
+//        loadObject(player);
+        System.out.println(player);
 
-        saveObject(adit);
-        loadObject(adit);
-        System.out.println(adit.toString());
+        ISaveable werewolf = new Monster("Werewolf", 100, 99);
+        System.out.println(werewolf);
+        saveObject(werewolf);
     }
     public static void loadObject(ISaveable objectToLoad){
         ArrayList<String> values = readValues();
