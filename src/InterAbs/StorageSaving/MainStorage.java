@@ -39,6 +39,9 @@ public class MainStorage {
         saveObject(player);
         System.out.println(player);
 
+        // In order to be able to access the Monster's class methods,
+        // code execution must be done as shown below since werewolf is
+        // declared as a ISaveable.
         ISaveable werewolf = new Monster("Werewolf", 100, 99);
         System.out.println("\nMonster Data:\n");
         System.out.println("Name: " + ((Monster) werewolf).getName());
