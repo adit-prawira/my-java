@@ -1,0 +1,26 @@
+Abstract class:
+- Similar to interfaces.
+- Can't be instantiated.
+- May contain a mix of methods declared with or without an implementation.
+- With abstract classes, we can declare fields that are not static and final, and define public, protected, and private concrete methods.
+- An abstract class can extend only one parent class but it can implement multiple interfaces.
+- When abstract class is subclassed, the subclass usually provides implementations for al of abstract methods in its parent class.
+- However, if it does not, then the subclass must also be declared abstract.
+
+When to use abstract class:
+- when we want to share code among several closely related classes
+- when we expect classes that extends your abstract class to have many common methods or fields or required access modifiers other than public (protected, private).
+- when we want to declare non static or non final fields (for example name, age), this will enable us wto define methods that can access and modify the state of an object (getName, setName)
+- when we have requirement for your base class to provide a default implementation of certain methods but other methods should be open to being overridden by child classes.
+- Hence, abstract class is to provide a common definition of a base class that multiple derived classes can share.
+
+Interface:
+- More flexible and can deal with a lot more stress on the design of our program than the implementation.
+- By utilising interfaces in our program, we can really introduce points of variation at which you can plug in different implementations for that interface.
+  As interfaces primary purposes is abstraction, decoupling the "what" from the "how".
+
+When to use interface:
+- when we expect that unrelated classes will implement your interface. For example, the interfaces Comparable adn Cloneable are implemented by many unrelated classes.
+- when we want to specify the behaviour of a particular data type, but you are not concerned about who implements its behaviour.
+- the collections API is an excellent example, we have the list interface and implementations ArrayList and LinkedList
+- JDBC API is the other example. It exists of almost only interfaces. The concrete implementations are provided as 'JDBC drivers'. This enables us to write all the KDBC code independent of the database vendor.
