@@ -3,7 +3,7 @@ package InterAbs.Game;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Monster implements ISaveable{
+public class Monster implements ISavable {
     private String name;
     private int hitPoints;
     private int strength;

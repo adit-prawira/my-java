@@ -2,7 +2,7 @@ package InterAbs.Game;
 
 import java.util.List;
 
-public interface ISaveable {
+public interface ISavable {
     List<String> write();
     void read(List<String> savedValues);
 
