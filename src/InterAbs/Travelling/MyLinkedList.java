@@ -63,11 +63,53 @@ public class MyLinkedList implements NodeList{
 
     @Override
     public boolean removeItem(ListItem item) {
+        if(item != null){
+            System.out.println("Deleting item " + item.getValue());
+        }
+        ListItem currentItem = this.root;
+        while(currentItem != null){
+            // compareTo method which is referenced from ListItem abstract class
+            int comparison = currentItem.compareTo(item);
+            if(comparison == 0){
+                // found the record to delete
+                if(currentItem == this.root){
+                    // if the deleted item is the root/head item of the list,
+                    // then set the root as the next item of the currentItem.
+                    this.root = currentItem.next();
+                }else{
+                    // set the next item of the currentItem's previous item to be the the currentItem's next item
+                    currentItem.previous().setNext(currentItem.next());
+                    if(currentItem.next() != null){
+                        // set the previous item of the currentItem's next item to be the currentItem's previous item
+                        currentItem.next().setPrevious(currentItem.previous());
+                    }
+
+                }
+                return true;
+            }else if(comparison < 0){
+                // We haven't found the target deleted item in the list yet so continue the search.
+                currentItem = currentItem.next();
+            }else{
+                // the case where we passed the point where we should've deleted the item
+                // we are at an item greater than the one to be deleted
+                // so the case where the deleted item is not in the list
+                return false;
+            }
+        }
         return false;
     }
 
     @Override
     public void traverse(ListItem root) {
-
+        if(root == null){
+            System.out.println("The list is empty");
+        }else{
+            // Print the value of the current root and access the next root and print its value
+            // until there is no next root left.
+            while(root != null) {
+                System.out.println(root.getValue());
+                root = root.next();
+            }
+        }
     }
 }
