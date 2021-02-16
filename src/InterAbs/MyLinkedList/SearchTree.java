@@ -89,7 +89,58 @@ public class SearchTree implements NodeList{
         return false;
     }
 
-    private void performRemoval(ListItem currentItem, ListItem parentItem) {
+    // A method that will remove item from the tree
+    private void performRemoval(ListItem item, ListItem parent) {
+        // The condition where there is no right tree of the item
+        if(item.next() == null){
+            // no right tree, then this make parent to go the left tree (which may be null)
+            if(parent.next() == item){
+                // The condition if the right child of the parent is the item
+                // If yes, then take the left child of the item
+                // and set it as the right child of the parent
+                parent.setNext(item.previous());
+            }else if(parent.previous() == item){
+                // The condition if the left child of the parent is the item
+                // if yes, then take the right child of the item
+                // and set it as the left child of the parent
+                parent.setPrevious(item.previous());
+            }else{
+                // Otherwise, parent is actually IS the item
+                // deleting the root
+                this.root = item.previous();
+            }
+        }else if(item.previous() == null){
+            if(parent.next() == item){
+                parent.setNext(item.next());
+            }else if(parent.previous() == item){
+                parent.setPrevious(item.next());
+            }else{
+                this.root = item.next();
+            }
+        }else{
+            // the condition where the left and right value of the current tree is defined
+            // set currentItem as the right child of "item".
+            // This mean that from the right sub-tree, find the smallest value which is the leftmost value
+            ListItem currentItem = item.next();
+            ListItem leftmostParent = item;
+            while(currentItem.previous() != null){
+                leftmostParent = currentItem;
+                currentItem = currentItem.previous();
+            }
+            // Set the smallest value into item node to be deleted
+            item.setValue(currentItem.getValue());
+            // and delete the smallest
+            if(leftmostParent == item){
+                // there was no leftmost node, so currentItem points to the smallest
+                // node (the one that must now be deleted)
+                item.setNext(currentItem.next());
+            }else{
+                // set the smallest node's parent to point to
+                // the smallest node's right child (which may be null);
+                leftmostParent.setPrevious(currentItem.next());
+            }
+
+        }
     }
 
     @Override
