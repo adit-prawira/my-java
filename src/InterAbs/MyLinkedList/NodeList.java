@@ -1,4 +1,4 @@
-package InterAbs.Travelling;
+package InterAbs.MyLinkedList;
 
 public interface NodeList {
     ListItem getRoot();

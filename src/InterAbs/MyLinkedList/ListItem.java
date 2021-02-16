@@ -1,4 +1,4 @@
-package InterAbs.Travelling;
+package InterAbs.MyLinkedList;
 
 public abstract class ListItem {
     // The attributes are set to be protected instead of private,

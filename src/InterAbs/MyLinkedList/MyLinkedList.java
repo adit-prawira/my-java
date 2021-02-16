@@ -1,4 +1,4 @@
-package InterAbs.Travelling;
+package InterAbs.MyLinkedList;
 
 public class MyLinkedList implements NodeList{
     private ListItem root = null;

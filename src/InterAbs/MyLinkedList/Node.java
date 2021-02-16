@@ -1,4 +1,4 @@
-package InterAbs.Travelling;
+package InterAbs.MyLinkedList;
 
 public class Node extends ListItem{
     public Node(Object o){
