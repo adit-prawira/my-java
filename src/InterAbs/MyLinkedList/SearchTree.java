@@ -4,9 +4,11 @@ import java.util.List;
 
 public class SearchTree implements NodeList{
     private ListItem root = null;
-    public SearchTree(ListItem root){
-        this.root= root;
+
+    public SearchTree(ListItem root) {
+        this.root = root;
     }
+
     @Override
     public ListItem getRoot() {
         return this.root;
