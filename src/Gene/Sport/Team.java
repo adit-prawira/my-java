@@ -2,14 +2,13 @@ package Gene.Sport;
 
 import java.util.ArrayList;
 
-public class Team {
+public class Team<T extends Player> {
     private String name;
+    private ArrayList<T> members = new ArrayList<>();
     int gamePlayed = 0;
     int won =0;
     int lost = 0;
     int tied = 0;
-    private ArrayList<Player> members = new ArrayList<>();
-
     public Team(String name) {
         this.name = name;
     }
@@ -18,7 +17,7 @@ public class Team {
         return name;
     }
 
-    public boolean addPlayer(Player player){
+    public boolean addPlayer(T player){
         if(members.contains(player)){
             System.out.println(player.getName()+ " is already on the team");
             return false;
@@ -29,13 +28,17 @@ public class Team {
         }
     }
     public int numPlayers(){return this.members.size();}
-    public void matchResult(Team opponent, int ourScore, int opponentScore){
+    public void matchResult(Team<T> opponent, int ourScore, int opponentScore){
+        String message;
         if(ourScore > opponentScore){
             won ++;
+            message = " beat ";
         }else if (ourScore == opponentScore){
             tied++;
+            message = " drew with ";
         }else{
             lost++;
+            message = " lost to ";
         }
         gamePlayed++;
         if(opponent != null){
@@ -43,7 +46,9 @@ public class Team {
             // their score and compare it with our score
             // In this case ourScore is opponentScore
             // and ourScore is opponentScore
+            System.out.println(this.getName()+ message + opponent.getName());
             opponent.matchResult(null, opponentScore, ourScore);
+
         }
     }
 
