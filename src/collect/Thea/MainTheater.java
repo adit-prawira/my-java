@@ -7,34 +7,35 @@ import java.util.List;
 public class MainTheater {
     public static void main(String[] args){
         Theater theater = new Theater("Olympian", 8, 12);
-        // shallow copy
-        List<Theater.Seat> seatCopy = new ArrayList<>(theater.seats);
-        printList(seatCopy);
-        seatCopy.get(1).reserve();
-        if(theater.reservedSeatBS("A02")){
-            System.out.println("Please pay");
+        if(theater.reservedSeatCBS("A02")){
+            System.out.println("Please pay for A02");
         }else{
             System.out.println("Seat is already reserved");
         }
+        if(theater.reservedSeatCBS("B13")){
+            System.out.println("Please pay for B13");
+        }else{
+            System.out.println("Seat is already reserved");
+        }
+        if(theater.reservedSeatCBS("A02")){
+            System.out.println("Please pay for A02");
+        }else{
+            System.out.println("Seat is already reserved");
+        }
+        List<Theater.Seat> reservedSeats = new ArrayList<>(theater.getSeats());
+        Collections.reverse(reservedSeats);
+        printList(reservedSeats);
 
-        Collections.reverse(seatCopy);
-        System.out.println("Printing seatCopy");
-        printList(seatCopy);
-        System.out.println("Printing theater.seat");
-        printList(theater.seats);
+        List<Theater.Seat> priceSeats = new ArrayList<>(theater.getSeats());
+        priceSeats.add(theater.new Seat("B00", 13.00));
+        priceSeats.add(theater.new Seat("A00", 13.00));
+        Collections.sort(priceSeats, Theater.PRICE_ORDER);
+        printList(priceSeats);
 
-        Theater.Seat minSeat = Collections.min(seatCopy);
-        Theater.Seat maxSeat = Collections.max(seatCopy);
-        System.out.println(" Min seat number is " + minSeat.getSeatNumber());
-        System.out.println("Max seat number is "+ maxSeat.getSeatNumber());
-
-        sortList(seatCopy);
-        System.out.println("Printing sorted seatCopy");
-        printList(seatCopy);
     }
     public static void printList(List<Theater.Seat> list){
         for(Theater.Seat seat: list){
-            System.out.print(" " + seat.getSeatNumber());
+            System.out.print(" " + seat.getSeatNumber() + " $" + seat.getPrice() );
         }
         System.out.println();
         System.out.println("========================================================================================");
@@ -50,7 +51,6 @@ public class MainTheater {
                 }
             }
         }
-
     }
 
 
