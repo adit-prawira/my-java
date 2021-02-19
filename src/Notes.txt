@@ -24,3 +24,12 @@ When to use interface:
 - when we want to specify the behaviour of a particular data type, but you are not concerned about who implements its behaviour.
 - the collections API is an excellent example, we have the list interface and implementations ArrayList and LinkedList
 - JDBC API is the other example. It exists of almost only interfaces. The concrete implementations are provided as 'JDBC drivers'. This enables us to write all the KDBC code independent of the database vendor.
+
+=================
+NAMING CONVENTION
+=================
+- E = Elements (used by the java Collections framework)
+- K = key
+- T = Type
+- V = Value
+- S, U, V 2nd, 3rd, 4th types
