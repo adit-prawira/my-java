@@ -33,3 +33,11 @@ NAMING CONVENTION
 - T = Type
 - V = Value
 - S, U, V 2nd, 3rd, 4th types
+
+Collection Hierarchy
+Collection:
+    - Set:
+        - SortedList
+    - List
+    - Queue
+    - Deque
