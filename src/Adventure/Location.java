@@ -11,6 +11,9 @@ public class Location {
         this.locationID = locationID;
         this.description = description;
         this.exits = new HashMap<String, Integer>();
+
+        // Automatically added quit key for each location
+        this.exits.put("Q", 0);
     }
 
     public int getLocationID() {
