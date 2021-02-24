@@ -1,11 +1,13 @@
 package SolarSystem;
 
+import collect.Thea.Theater;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class MainSolarSystem {
+public class MainSolarSystem   {
     private static Map<String, HeavenlyBody> solarSystems = new HashMap<>();
     private static Set<HeavenlyBody> planets = new HashSet<>();
 
@@ -85,10 +87,29 @@ public class MainSolarSystem {
         for(HeavenlyBody planet: planets){
             System.out.println("\t- " + planet.getName());
         }
-        HeavenlyBody body = solarSystems.get("Jupiter");
-        System.out.println("Moons of " + body.getName());
+        HeavenlyBody body = solarSystems.get("Mars");
+        System.out.println("Moons of " + body.getName()+ ":");
         for(HeavenlyBody satellite: body.getSatellites()){
             System.out.println("\t- " + satellite.getName());
         }
+
+        Set<HeavenlyBody> moons = new HashSet<>();
+        for(HeavenlyBody planet: planets){
+            moons.addAll(planet.getSatellites());
+        }
+
+        System.out.println("All Moons:");
+        for(HeavenlyBody moon: moons){
+            System.out.println("\t- "+ moon.getName());
+        }
+        HeavenlyBody pluto = new HeavenlyBody("Pluto", 842);
+        planets.add(pluto);
+
+        for(HeavenlyBody planet: planets){
+            System.out.println(planet.getName() + ": " + planet.getOrbitalPeriod());
+        }
+        Object o = new Object();
+        o.equals(o);
+        "pluto".equals("");
     }
 }
