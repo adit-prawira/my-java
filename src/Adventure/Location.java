@@ -19,8 +19,12 @@ public class Location {
     public String getDescription() {
         return description;
     }
+
+    // This technique is useful because nothing outside of Location class can change exit
+    // the getter will return the copy of exits so if the calling program wants to add or remove mappings from it
+    // and the exits mapping filed won't be affected.
     public Map<String, Integer> getExits() {
-        return exits;
+        return new HashMap<String, Integer>(exits);
     }
 
     public void addExit(String direction , int location){
